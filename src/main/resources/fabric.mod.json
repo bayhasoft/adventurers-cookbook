@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "adventurers-cookbook",
+	"version": "${version}",
+	"name": "Adventurer's CookBook",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"KG7PNH"
+	],
+	"contact": {
+		"sources": "https://github.com/bayhasoft/adventurers-cookbook"
+	},
+	"license": "GPLv3",
+	"icon": "assets/adventurers-cookbook/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"bayhasoft.adventurerscookbook.AdventurersCookBook"
+		],
+		"client": [
+			"bayhasoft.adventurerscookbook.AdventurersCookBookClient"
+		],
+		"fabric-datagen": [
+			"bayhasoft.adventurerscookbook.AdventurersCookBookDataGenerator"
+		]
+	},
+	"mixins": [
+		"adventurers-cookbook.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.18",
+		"minecraft": "~1.19.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
