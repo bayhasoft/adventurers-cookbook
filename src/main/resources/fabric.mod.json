@@ -11,7 +11,7 @@
 		"sources": "https://github.com/bayhasoft/adventurers-cookbook"
 	},
 	"license": "GPLv3",
-	"icon": "assets/adventurers-cookbook/icon.png",
+	"icon": "assets/adventurerscookbook/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -25,7 +25,7 @@
 		]
 	},
 	"mixins": [
-		"adventurers-cookbook.mixins.json"
+		"adventurerscookbook.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14.18",
