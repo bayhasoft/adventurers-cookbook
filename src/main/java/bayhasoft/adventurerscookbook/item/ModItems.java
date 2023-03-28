@@ -41,6 +41,18 @@ public class ModItems {
         )
     );
 
+    public static final Item MANGO = registerItem( "mango",
+            new Item(new FabricItemSettings()
+                .food(
+                    new FoodComponent
+                        .Builder()
+                        .hunger(4)
+                        .saturationModifier(2.4f)
+                        .build()
+            )
+        )
+    );
+
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(AdventurersCookBook.MOD_ID, name), item);
@@ -48,6 +60,7 @@ public class ModItems {
 
     public static void addItemsToItemGroup() {
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, CARROT_JUICE);
+        addToItemGroup(ItemGroups.FOOD_AND_DRINK, MANGO);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, GOLDEN_CARROT_JUICE);
     }
 

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import bayhasoft.adventurerscookbook.item.ModItems;
+import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableBlockModifiers;
 
 public class AdventurersCookBook implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -21,6 +22,8 @@ public class AdventurersCookBook implements ModInitializer {
 		// Proceed with mild caution.
 
 		ModItems.registerModItems();
+
+		LootTableBlockModifiers.modifyLootTables();
 
 		LOGGER.info("Hello Fabric world!");
 	}
