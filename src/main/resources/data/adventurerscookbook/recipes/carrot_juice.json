@@ -6,7 +6,7 @@
             "item": "minecraft:carrot"
         },
         {
-            "item": "minecraft:glass_bottle"
+            "item": "adventurerscookbook:drinking_glass"
         }
     ],
     "result": {
