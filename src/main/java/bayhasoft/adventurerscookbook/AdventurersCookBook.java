@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import bayhasoft.adventurerscookbook.block.ModBlocks;
 import bayhasoft.adventurerscookbook.item.ModItems;
 import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableBlockModifiers;
 
@@ -22,7 +23,7 @@ public class AdventurersCookBook implements ModInitializer {
 		// Proceed with mild caution.
 
 		ModItems.registerModItems();
-
+		ModBlocks.registerModBlocks();
 		LootTableBlockModifiers.modifyLootTables();
 
 		LOGGER.info("Hello Fabric world!");

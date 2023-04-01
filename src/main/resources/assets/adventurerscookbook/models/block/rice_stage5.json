@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/crop",
+    "textures": {
+      "crop": "adventurerscookbook:block/rice_stage5"
+    }
+  }

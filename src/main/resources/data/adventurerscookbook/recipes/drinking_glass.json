@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "# #",
+        " # "
+    ],
+    "category": "misc",
+    "key": {
+        "#": {
+            "item": "minecraft:glass"
+        }
+    },
+    "result": {
+        "item": "adventurerscookbook:drinking_glass",
+        "count": 5
+    }
+}

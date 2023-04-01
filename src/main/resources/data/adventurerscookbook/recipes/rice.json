@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+        {
+            "item": "adventurerscookbook:rice_bag"
+        }
+    ],
+    "result": {
+        "item": "adventurerscookbook:rice",
+        "count": 9
+    },
+    "group": "rice"
+}
