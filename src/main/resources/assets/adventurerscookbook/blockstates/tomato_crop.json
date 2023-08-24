@@ -1,0 +1,8 @@
+{
+    "variants": {
+      "age=0": { "model": "adventurerscookbook:block/tomato_stage0" },
+      "age=1": { "model": "adventurerscookbook:block/tomato_stage1" },
+      "age=2": { "model": "adventurerscookbook:block/tomato_stage2" },
+      "age=3": { "model": "adventurerscookbook:block/tomato_stage3" }
+    }
+  }

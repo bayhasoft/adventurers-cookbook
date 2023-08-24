@@ -3,7 +3,7 @@
 	"package": "bayhasoft.adventurerscookbook.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"AdventurersCookBookMixin"
+		"CompostMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
