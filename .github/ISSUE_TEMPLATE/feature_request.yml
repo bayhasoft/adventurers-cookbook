@@ -1,0 +1,29 @@
+name: Bug Report
+description: File a bug report
+title: "[FEAT]: "
+labels: ["feature", "triage"]
+assignees:
+  - kg7pnh
+  - KJ7GDS
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: feature
+    attributes:
+      label: What would you like to see added?
+      description: Let us know if this is related to a problem and what it is.
+      placeholder: A clear and concise description of what you want to happen.
+      value: "Feature requested!"
+    validations:
+      required: true
