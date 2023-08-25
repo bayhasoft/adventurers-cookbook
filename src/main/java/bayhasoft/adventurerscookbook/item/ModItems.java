@@ -4,12 +4,14 @@ import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.block.ModBlocks;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
-import net.minecraft.item.StewItem;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -22,7 +24,7 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(3)
-                        .saturationModifier(3.6f)
+                        .saturationModifier(1.2f)
                         .snack()
                         .build()
             )
@@ -38,9 +40,22 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(6)
-                        .saturationModifier(14.4f)
+                        .saturationModifier(2.4f)
                         .snack()
                         .build()
+            )
+        )
+    );
+
+    public static final Item GREEN_TOMATO = registerItem( "green_tomato",
+            new Item(new FabricItemSettings()
+            .food(
+                new FoodComponent
+                    .Builder()
+                    .hunger(4)
+                    .saturationModifier(0.6f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6f)
+                    .build()
             )
         )
     );
@@ -51,14 +66,9 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(4)
-                        .saturationModifier(2.4f)
+                        .saturationModifier(0.6f)
                         .build()
             )
-        )
-    );
-
-    public static final Item RICE_SEEDS = registerItem("rice_seeds",
-            new AliasedBlockItem(ModBlocks.RICE_CROP, new  FabricItemSettings()
         )
     );
 
@@ -72,16 +82,8 @@ public class ModItems {
         )
     );
 
-
-    public static final Item SUSHI = registerItem( "sushi",
-            new Item(new FabricItemSettings()
-                .food(
-                    new FoodComponent
-                        .Builder()
-                        .hunger(8)
-                        .saturationModifier(12.8f)
-                        .build()
-            )
+    public static final Item RICE_SEEDS = registerItem("rice_seeds",
+            new AliasedBlockItem(ModBlocks.RICE_CROP, new  FabricItemSettings()
         )
     );
 
@@ -91,9 +93,38 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(5)
-                        .saturationModifier(6f)
+                        .saturationModifier(1.2f)
                         .build()
             )
+        )
+    );
+
+    public static final Item SUSHI = registerItem( "sushi",
+            new Item(new FabricItemSettings()
+                .food(
+                    new FoodComponent
+                        .Builder()
+                        .hunger(8)
+                        .saturationModifier(1.6f)
+                        .build()
+            )
+        )
+    );
+
+    public static final Item TOMATO = registerItem( "tomato",
+            new Item(new FabricItemSettings()
+            .food(
+                new FoodComponent
+                    .Builder()
+                    .hunger(4)
+                    .saturationModifier(0.6f)
+                    .build()
+        )
+        )
+    );
+
+    public static final Item TOMATO_SEEDS = registerItem("tomato_seeds",
+            new AliasedBlockItem(ModBlocks.TOMATO_CROP, new  FabricItemSettings()
         )
     );
 
@@ -104,13 +135,16 @@ public class ModItems {
     public static void addItemsToItemGroup() {
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, CARROT_JUICE);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, GOLDEN_CARROT_JUICE);
+        addToItemGroup(ItemGroups.FOOD_AND_DRINK, GREEN_TOMATO);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, MANGO);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, RICE_BOWL);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, SUSHI);
+        addToItemGroup(ItemGroups.FOOD_AND_DRINK, TOMATO);
         addToItemGroup(ItemGroups.INGREDIENTS, DRINKING_GLASS);
         addToItemGroup(ItemGroups.INGREDIENTS, RICE);
         addToItemGroup(ItemGroups.INGREDIENTS, RICE_BAG);
         addToItemGroup(ItemGroups.NATURAL, RICE_SEEDS);
+        addToItemGroup(ItemGroups.NATURAL, TOMATO_SEEDS);
     }
 
     private static void addToItemGroup(ItemGroup group, Item item) {

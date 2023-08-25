@@ -2,6 +2,7 @@ package bayhasoft.adventurerscookbook.block;
 
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.block.custom.RiceCropBlock;
+import bayhasoft.adventurerscookbook.block.custom.TomatoCropBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -19,6 +20,9 @@ public class ModBlocks {
     public static final Block RICE_CROP = registerBlockWithOutItem("rice_crop",
         new RiceCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
    
+    public static final Block TOMATO_CROP = registerBlockWithOutItem("tomato_crop",
+        new TomatoCropBlock(FabricBlockSettings.copyOf(Blocks.CARROTS))); 
+  
     private static Block registerBlockWithOutItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, new Identifier(AdventurersCookBook.MOD_ID, name), block);}
 

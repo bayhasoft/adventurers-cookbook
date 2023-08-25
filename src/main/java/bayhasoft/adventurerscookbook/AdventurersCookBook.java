@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import bayhasoft.adventurerscookbook.block.ModBlocks;
 import bayhasoft.adventurerscookbook.item.ModItems;
 import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableBlockModifiers;
+import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableChestModifiers;
+import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableChestVillageModifier;
 
 public class AdventurersCookBook implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -25,6 +27,8 @@ public class AdventurersCookBook implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		LootTableBlockModifiers.modifyLootTables();
+		LootTableChestModifiers.modifyLootTables();
+		LootTableChestVillageModifier.modifyLootTables();
 
 		LOGGER.info("Hello Fabric world!");
 	}

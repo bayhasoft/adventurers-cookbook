@@ -27,23 +27,22 @@ public class LootTableBlockModifiers {
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             if(JUNGLE_LEAVES_ID.equals(id)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
+                LootPool.Builder PoolBuilderMango = LootPool.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
                     .conditionally(RandomChanceLootCondition.builder(0.005f))
                     .with(ItemEntry.builder(ModItems.MANGO))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())
                     .apply(ApplyBonusLootFunction.uniformBonusCount(Enchantments.FORTUNE));
-                tableBuilder.pool(poolBuilder.build());
+                tableBuilder.pool(PoolBuilderMango.build());
             } else if (GRASS_ID.equals(id) || TALL_GRASS_ID.equals(id)){
-                LootPool.Builder poolBuilder = LootPool.builder()
+                LootPool.Builder PoolBuilderRiceSeeds = LootPool.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
                     .conditionally(RandomChanceLootCondition.builder(0.125f))
                     .with(ItemEntry.builder(ModItems.RICE_SEEDS))
                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())
                     .apply(ApplyBonusLootFunction.uniformBonusCount(Enchantments.FORTUNE));
-                tableBuilder.pool(poolBuilder.build());
-            }
+                tableBuilder.pool(PoolBuilderRiceSeeds.build());
+            } 
         });
     }
-
 }
