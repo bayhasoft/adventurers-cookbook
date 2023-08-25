@@ -31,12 +31,26 @@ body:
     id: mod_version
     attributes:
       label: Mod Version
-      description: What version of our software are you running?
+      description: Which version of our mod are you using?
       options:
         - 0.1.3 (Default)
       default: 0
     validations:
       required: true
+  - type: dropdown
+    id: fabric
+    attributes:
+      label: Which version of fabric are you running?
+      options:
+        - 0.87.0+1.19.4
+      default: 0
+  - type: dropdown
+    id: minecraft
+    attributes:
+      label: Which version of Minecraft are you running?
+      options:
+        - 1.19.4
+      default: 0
   - type: dropdown
     id: os
     attributes:
