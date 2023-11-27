@@ -24,7 +24,7 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(3)
-                        .saturationModifier(1.2f)
+                        .saturationModifier(0.6f)
                         .snack()
                         .build()
             )
@@ -40,7 +40,7 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(6)
-                        .saturationModifier(2.4f)
+                        .saturationModifier(1.2f)
                         .snack()
                         .build()
             )
@@ -53,7 +53,7 @@ public class ModItems {
                 new FoodComponent
                     .Builder()
                     .hunger(4)
-                    .saturationModifier(0.6f)
+                    .saturationModifier(0.3f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6f)
                     .build()
             )
@@ -66,7 +66,7 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(4)
-                        .saturationModifier(0.6f)
+                        .saturationModifier(0.3f)
                         .build()
             )
         )
@@ -93,7 +93,7 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(5)
-                        .saturationModifier(1.2f)
+                        .saturationModifier(0.6f)
                         .build()
             )
         )
@@ -105,7 +105,7 @@ public class ModItems {
                     new FoodComponent
                         .Builder()
                         .hunger(8)
-                        .saturationModifier(1.6f)
+                        .saturationModifier(0.8f)
                         .build()
             )
         )
@@ -117,7 +117,7 @@ public class ModItems {
                 new FoodComponent
                     .Builder()
                     .hunger(4)
-                    .saturationModifier(0.6f)
+                    .saturationModifier(0.3f)
                     .build()
         )
         )
