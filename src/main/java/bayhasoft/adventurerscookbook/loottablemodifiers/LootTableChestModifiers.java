@@ -49,7 +49,7 @@ public class LootTableChestModifiers {
             "chests/end_city_treasure");
 
     public static void modifyLootTables() {
-        // Minesaft
+        // Mineshaft
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             if (ABANDONED_MINESHAFT_CHEST_ID.equals(id)) {
                 LootPool.Builder PoolBuilderTomatoSeeds = LootPool.builder()
