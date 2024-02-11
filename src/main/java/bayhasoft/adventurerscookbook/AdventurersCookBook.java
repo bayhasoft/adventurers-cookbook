@@ -1,6 +1,7 @@
 package bayhasoft.adventurerscookbook;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.block.ComposterBlock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,12 @@ public class AdventurersCookBook implements ModInitializer {
 		LootTableBlockModifiers.modifyLootTables();
 		LootTableChestModifiers.modifyLootTables();
 		LootTableChestVillageModifier.modifyLootTables();
+
+		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.MANGO.asItem(),0.65F);
+		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.RICE.asItem(),0.3F);
+		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.RICE_SEEDS.asItem(),0.3F);
+		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.TOMATO.asItem(),0.65F);
+		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.TOMATO_SEEDS.asItem(),0.3F);
 
 		LOGGER.info("Hello Fabric world!");
 	}
