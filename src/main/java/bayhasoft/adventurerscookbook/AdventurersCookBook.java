@@ -11,6 +11,7 @@ import bayhasoft.adventurerscookbook.item.ModItems;
 import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableBlockModifiers;
 import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableChestModifiers;
 import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableChestVillageModifier;
+import bayhasoft.adventurerscookbook.util.CustomTrades;
 
 public class AdventurersCookBook implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -27,6 +28,7 @@ public class AdventurersCookBook implements ModInitializer {
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		CustomTrades.registerCustomTrades();
 		LootTableBlockModifiers.modifyLootTables();
 		LootTableChestModifiers.modifyLootTables();
 		LootTableChestVillageModifier.modifyLootTables();
