@@ -13,4 +13,3 @@
 * **Does this PR introduce a breaking change?** (What changes might users need to make in their application due to this PR?)
 
 * **Other information**:
-  git commit -m "updated ISSUE_TEMPLATE, added PULL_REQUEST_TEMPLATE, added CONTRIBUTING.md"
