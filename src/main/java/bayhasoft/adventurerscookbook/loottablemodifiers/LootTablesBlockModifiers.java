@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 import bayhasoft.adventurerscookbook.item.ModItems;
 
-public class LootTableBlockModifiers {
+public class LootTablesBlockModifiers {
     
     private static final Identifier GRASS_ID
     = new Identifier("minecraft", "blocks/grass");

@@ -8,9 +8,10 @@ import org.slf4j.LoggerFactory;
 
 import bayhasoft.adventurerscookbook.block.ModBlocks;
 import bayhasoft.adventurerscookbook.item.ModItems;
-import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableBlockModifiers;
-import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableChestModifiers;
-import bayhasoft.adventurerscookbook.loottablemodifiers.LootTableChestVillageModifier;
+import bayhasoft.adventurerscookbook.loottablemodifiers.LootTablesBlockModifiers;
+import bayhasoft.adventurerscookbook.loottablemodifiers.LootTablesChestModifiers;
+import bayhasoft.adventurerscookbook.loottablemodifiers.LootTablesChestVillageModifier;
+import bayhasoft.adventurerscookbook.loottablemodifiers.LootTablesEntitiesModifiers;
 import bayhasoft.adventurerscookbook.util.CustomTrades;
 
 public class AdventurersCookBook implements ModInitializer {
@@ -29,9 +30,10 @@ public class AdventurersCookBook implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		CustomTrades.registerCustomTrades();
-		LootTableBlockModifiers.modifyLootTables();
-		LootTableChestModifiers.modifyLootTables();
-		LootTableChestVillageModifier.modifyLootTables();
+		LootTablesBlockModifiers.modifyLootTables();
+		LootTablesChestModifiers.modifyLootTables();
+		LootTablesChestVillageModifier.modifyLootTables();
+		LootTablesEntitiesModifiers.modifyLootTables();
 
 		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.MANGO.asItem(),0.65F);
 		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.RICE.asItem(),0.3F);

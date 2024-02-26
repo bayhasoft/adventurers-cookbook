@@ -10,7 +10,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
 
-public class LootTableChestModifiers {
+public class LootTablesChestModifiers {
 
     private static final Identifier ABANDONED_MINESHAFT_CHEST_ID = new 
         Identifier("minecraft",
