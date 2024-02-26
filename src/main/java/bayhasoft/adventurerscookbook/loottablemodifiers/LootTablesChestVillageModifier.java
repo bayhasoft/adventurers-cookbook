@@ -10,7 +10,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
 
-public class LootTableChestVillageModifier {
+public class LootTablesChestVillageModifier {
 
     private static final Identifier VILLAGE_ARMORER_CHEST_ID = new 
         Identifier("minecraft",

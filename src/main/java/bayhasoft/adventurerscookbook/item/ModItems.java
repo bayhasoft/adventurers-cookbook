@@ -34,6 +34,29 @@ public class ModItems {
     public static final Item DRINKING_GLASS = registerItem("drinking_glass",
             new Item(new FabricItemSettings()));
 
+
+    public static final Item FROG_LEGS = registerItem("frog_legs",
+        new Item(new FabricItemSettings()
+        .food(
+            new FoodComponent
+                .Builder()
+                .hunger(3)
+                .saturationModifier(0.3f)
+                .build()
+        ))
+    );
+
+    public static final Item FROG_LEGS_COOKED = registerItem("frog_legs_cooked",
+        new Item(new FabricItemSettings()
+        .food(
+            new FoodComponent
+                .Builder()
+                .hunger(5)
+                .saturationModifier(0.6f)
+                .build()
+        ))
+    );
+
     public static final Item GOLDEN_CARROT_JUICE = registerItem( "golden_carrot_juice",
             new JuiceItem(new FabricItemSettings()
                 .food(
@@ -134,6 +157,8 @@ public class ModItems {
 
     public static void addItemsToItemGroup() {
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, CARROT_JUICE);
+        addToItemGroup(ItemGroups.FOOD_AND_DRINK, FROG_LEGS);
+        addToItemGroup(ItemGroups.FOOD_AND_DRINK, FROG_LEGS_COOKED);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, GOLDEN_CARROT_JUICE);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, GREEN_TOMATO);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, MANGO);
