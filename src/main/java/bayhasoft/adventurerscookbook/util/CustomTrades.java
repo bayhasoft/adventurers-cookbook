@@ -2,9 +2,6 @@ package bayhasoft.adventurerscookbook.util;
 
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import bayhasoft.adventurerscookbook.item.ModItems;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
