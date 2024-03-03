@@ -28,10 +28,10 @@ public class JuiceItem extends Item {
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         }
         if (stack.isEmpty()) {
-            return new ItemStack(Items.GLASS_BOTTLE);
+            return new ItemStack(ModItems.DRINKING_GLASS);
         }
         if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
-            ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
+            ItemStack itemStack = new ItemStack(ModItems.DRINKING_GLASS);
             PlayerEntity playerEntity = (PlayerEntity)user;
             if (!playerEntity.getInventory().insertStack(itemStack)) {
                 playerEntity.dropItem(itemStack, false);
