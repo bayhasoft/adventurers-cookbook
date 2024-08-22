@@ -1,8 +1,5 @@
 package bayhasoft.adventurerscookbook;
 
-import net.fabricmc.api.ModInitializer;
-import net.minecraft.block.ComposterBlock;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +10,8 @@ import bayhasoft.adventurerscookbook.loottablemodifiers.LootTablesChestModifiers
 import bayhasoft.adventurerscookbook.loottablemodifiers.LootTablesChestVillageModifier;
 import bayhasoft.adventurerscookbook.loottablemodifiers.LootTablesEntitiesModifiers;
 import bayhasoft.adventurerscookbook.util.CustomTrades;
+import bayhasoft.adventurerscookbook.util.ModRegisteries;
+import net.fabricmc.api.ModInitializer;
 
 public class AdventurersCookBook implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -28,19 +27,17 @@ public class AdventurersCookBook implements ModInitializer {
 		// Proceed with mild caution.
 
 		ModItems.registerModItems();
+		
 		ModBlocks.registerModBlocks();
+
 		CustomTrades.registerCustomTrades();
+		ModRegisteries.registerModThings();
+		
 		LootTablesBlockModifiers.modifyLootTables();
 		LootTablesChestModifiers.modifyLootTables();
 		LootTablesChestVillageModifier.modifyLootTables();
 		LootTablesEntitiesModifiers.modifyLootTables();
-
-		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.MANGO.asItem(),0.65F);
-		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.RICE.asItem(),0.3F);
-		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.RICE_SEEDS.asItem(),0.3F);
-		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.TOMATO.asItem(),0.65F);
-		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.TOMATO_SEEDS.asItem(),0.3F);
-
+		
 		LOGGER.info("Hello Fabric world!");
 	}
 }
