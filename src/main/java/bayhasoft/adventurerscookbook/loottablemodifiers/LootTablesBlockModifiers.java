@@ -1,48 +1,34 @@
 package bayhasoft.adventurerscookbook.loottablemodifiers;
 
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.minecraft.enchantment.Enchantments;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.minecraft.block.Blocks;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.ApplyBonusLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.util.Identifier;
-
+import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.item.ModItems;
 
 public class LootTablesBlockModifiers {
-    
-    private static final Identifier GRASS_ID
-    = new Identifier("minecraft", "blocks/grass");
-
-    private static final Identifier JUNGLE_LEAVES_ID
-    = new Identifier("minecraft", "blocks/jungle_leaves");
-
-    private static final Identifier TALL_GRASS_ID
-    = new Identifier("minecraft", "blocks/tall_grass");
 
     public static void modifyLootTables() {
-        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if(JUNGLE_LEAVES_ID.equals(id)) {
+        AdventurersCookBook.LOGGER.info(AdventurersCookBook.MOD_ID + "modifying loot tables");
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+            
+            if(Blocks.JUNGLE_LEAVES.getLootTableKey().equals(key)) {
                 LootPool.Builder PoolBuilderMango = LootPool.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
-                    .conditionally(RandomChanceLootCondition.builder(0.005f))
-                    .with(ItemEntry.builder(ModItems.MANGO))
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())
-                    .apply(ApplyBonusLootFunction.uniformBonusCount(Enchantments.FORTUNE));
+                    .with(ItemEntry.builder(ModItems.MANGO));
+                    //.conditionally(TableBonusLootCondition.builder(FORTUNE, 1.0f));
                 tableBuilder.pool(PoolBuilderMango.build());
-            } else if (GRASS_ID.equals(id) || TALL_GRASS_ID.equals(id)){
+            }
+
+            if (Blocks.SHORT_GRASS.getLootTableKey().equals(key) || Blocks.TALL_GRASS.getLootTableKey().equals(key)){
                 LootPool.Builder PoolBuilderRiceSeeds = LootPool.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
-                    .conditionally(RandomChanceLootCondition.builder(0.125f))
-                    .with(ItemEntry.builder(ModItems.RICE_SEEDS))
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build())
-                    .apply(ApplyBonusLootFunction.uniformBonusCount(Enchantments.FORTUNE));
+                    .with(ItemEntry.builder(ModItems.RICE_SEEDS));
+                    //.conditionally(TableBonusLootCondition.builder((RegistryEntry<Enchantment>) FORTUNE, null));
                 tableBuilder.pool(PoolBuilderRiceSeeds.build());
             } 
         });
-    }
+     }
 }

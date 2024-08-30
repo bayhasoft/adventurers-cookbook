@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cross",
+    "textures": {
+      "cross": "adventurerscookbook:block/berry_test_bush_stage1"
+    }
+  }

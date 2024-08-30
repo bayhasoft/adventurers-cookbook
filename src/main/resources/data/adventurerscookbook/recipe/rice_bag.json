@@ -2,20 +2,18 @@
     "type": "minecraft:crafting_shaped",
     "category": "misc",
     "pattern": [
-        "##",
-        "B "
+        "###",
+        "###",
+        "###"
     ],
     "key": {
         "#": {
             "item": "adventurerscookbook:rice"
-        },
-        "B": {
-            "item": "minecraft:bowl"
         }
     },
     "result": {
-        "item": "adventurerscookbook:rice_bowl",
+        "id": "adventurerscookbook:rice_bag",
         "count": 1
     },
-    "group": "rice_bowl"
+    "group": "rice_bag"
 }

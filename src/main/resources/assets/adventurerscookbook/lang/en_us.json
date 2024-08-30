@@ -12,5 +12,20 @@
     "item.adventurerscookbook.rice_bag": "Bag of Rice",
     "item.adventurerscookbook.sushi": "Sushi",
     "item.adventurerscookbook.tomato": "Tomato",
-    "item.adventurerscookbook.tomato_seeds": "Tomato Seeds"
+    "item.adventurerscookbook.tomato_seeds": "Tomato Seeds",
+    "item.adventurerscookbook.ancient_fruit": "Ancient Fruit",
+    "item.adventurerscookbook.ancient_seed": "Ancient Seed",
+
+    "item.minecraft.potion.effect.vitality_potion": "Potion of Vitality",
+    "item.minecraft.potion.effect.long_vitality_potion": "Potion of Vitality",
+    "item.minecraft.potion.effect.strong_vitality_potion": "Potion of Vitality",
+    "item.minecraft.splash_potion.effect.vitality_potion": "Splash Potion of Vitality",
+    "item.minecraft.splash_potion.effect.long_vitality_potion": "Splash Potion of Vitality",
+    "item.minecraft.splash_potion.effect.strong_vitality_potion": "Splash Potion of Vitality",
+    "item.minecraft.lingering_potion.effect.vitality_potion": "Lingering Potion of Vitality",
+    "item.minecraft.lingering_potion.effect.long_vitality_potion": "Lingering Potion of Vitality",
+    "item.minecraft.lingering_potion.effect.strong_vitality_potion": "Lingering Potion of Vitality",
+    "item.minecraft.tipped_arrow.effect.vitality_potion": "Arrow of Vitality",
+    "item.minecraft.tipped_arrow.effect.long_vitality_potion": "Arrow of Vitality",
+    "item.minecraft.tipped_arrow.effect.strong_vitality_potion": "Arrow of Vitality"
 }

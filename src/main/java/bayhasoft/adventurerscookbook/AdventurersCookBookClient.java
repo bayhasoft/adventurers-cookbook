@@ -12,5 +12,7 @@ public class AdventurersCookBookClient implements ClientModInitializer {
         // blocks
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RICE_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TOMATO_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BERRY_TEST_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ANCIENT_FRUIT_CROP, RenderLayer.getCutout());
     }
 }

@@ -3,14 +3,14 @@
     "category": "misc",
     "ingredients": [
         {
-            "item": "minecraft:carrot"
+            "item": "minecraft:golden_carrot"
         },
         {
             "item": "adventurerscookbook:drinking_glass"
         }
     ],
     "result": {
-        "item": "adventurerscookbook:carrot_juice",
+        "id": "adventurerscookbook:golden_carrot_juice",
         "count": 1
     }
 }
