@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "adventurerscookbook:block/seed_maker_front",
+    "side": "adventurerscookbook:block/seed_maker_side",
+    "top": "adventurerscookbook:block/seed_maker_top"
+  }
+}

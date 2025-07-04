@@ -1,0 +1,9 @@
+{
+  "type": "adventurerscookbook:seed_maker",
+  "ingredient": {
+    "item": "minecraft:beetroot"
+  },
+  "result": {
+    "id": "minecraft:beetroot_seeds"
+  }
+}

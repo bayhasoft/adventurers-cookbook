@@ -1,0 +1,10 @@
+{
+  "type": "adventurerscookbook:seed_maker",
+  "ingredient": {
+    "item": "minecraft:pumpkin"
+  },
+  "result": {
+    "id": "minecraft:pumpkin_seeds",
+        "count": 8
+  }
+}

@@ -41,6 +41,7 @@ public class CustomTrades {
                     new TradedItem(ModItems.ANCIENT_FRUIT, 1),
                     new ItemStack(Items.EMERALD, 2),
                     16, 30, 0.05f));
+                    AdventurersCookBook.LOGGER.info("this should print once");
             });
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 2,
             factories -> {

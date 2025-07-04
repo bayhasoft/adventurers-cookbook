@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "adventurerscookbook:block/seed_maker",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "adventurerscookbook:block/seed_maker"
+    },
+    "facing=south": {
+      "model": "adventurerscookbook:block/seed_maker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "adventurerscookbook:block/seed_maker",
+      "y": 270
+    }
+  }
+}

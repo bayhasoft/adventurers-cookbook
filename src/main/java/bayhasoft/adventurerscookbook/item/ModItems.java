@@ -1,5 +1,7 @@
 package bayhasoft.adventurerscookbook.item;
 
+import java.util.List;
+
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.block.ModBlocks;
 import bayhasoft.adventurerscookbook.item.custom.FoodBowlItem;
@@ -10,9 +12,12 @@ import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
@@ -64,9 +69,15 @@ public class ModItems {
         new AliasedBlockItem(ModBlocks.TOMATO_CROP, new Item.Settings()));
 
     public static final Item ANCIENT_FRUIT = registerItem("ancient_fruit", 
-        new AliasedBlockItem(ModBlocks.BERRY_TEST_BUSH, new Item.Settings().food(ModFoodComponents.ANCIENT_FRUIT).rarity(Rarity.RARE)));
+        new Item(new Item.Settings().food(ModFoodComponents.ANCIENT_FRUIT).rarity(Rarity.RARE)));
 
-    public static final Item ANCIENT_SEED = registerItem("ancient_seed", new AliasedBlockItem(ModBlocks.ANCIENT_FRUIT_CROP, new Item.Settings()));
+    public static final Item ANCIENT_SEED = registerItem("ancient_seed", new AliasedBlockItem(ModBlocks.ANCIENT_FRUIT_CROP, new Item.Settings()){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        tooltip.add(Text.translatable("tooltip.adventurerscookbook.ancient_seed"));
+                   super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(AdventurersCookBook.MOD_ID, name), item);

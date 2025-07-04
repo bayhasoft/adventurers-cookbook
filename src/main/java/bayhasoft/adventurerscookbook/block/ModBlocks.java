@@ -4,6 +4,7 @@ import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.block.custom.AncientFruitCropBlock;
 import bayhasoft.adventurerscookbook.block.custom.BerryTestBlock;
 import bayhasoft.adventurerscookbook.block.custom.RiceCropBlock;
+import bayhasoft.adventurerscookbook.block.custom.SeedMakerBlock;
 import bayhasoft.adventurerscookbook.block.custom.TomatoCropBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
@@ -15,6 +16,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Settings;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -29,7 +31,7 @@ public class ModBlocks {
     public static final Block TOMATO_CROP = registerBlockWithOutItem("tomato_crop",
         new TomatoCropBlock(AbstractBlock.Settings.copy(Blocks.CARROTS))); 
 
-    public static final Block BERRY_TEST_BUSH = registerBlockWithOutItem("berry_test_bush", 
+    public static final Block BERRY_TEST_BUSH = registerBlockWithOutItem("berry_test_bush",
         new BerryTestBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)));
 
     public static final Block ANCIENT_FRUIT_CROP = registerBlockWithOutItem("ancient_fruit_crop", 
@@ -40,11 +42,13 @@ public class ModBlocks {
             .breakInstantly()
             .sounds(BlockSoundGroup.CROP)
             .pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block SEED_MAKER = registerBlock("seed_maker", 
+        new SeedMakerBlock(AbstractBlock.Settings.create()), ItemGroups.FUNCTIONAL);
   
     private static Block registerBlockWithOutItem(String name, Block block ) {
         return Registry.register(Registries.BLOCK, Identifier.of(AdventurersCookBook.MOD_ID, name), block);}
 
-    @SuppressWarnings("unused")
     private static Block registerBlock(String name, Block block, RegistryKey<ItemGroup> itemgroup) {
         registerBlockItem(name, block, itemgroup);
         return Registry.register(Registries.BLOCK, Identifier.of(AdventurersCookBook.MOD_ID, name), block);

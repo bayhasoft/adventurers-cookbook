@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "OnO",
+        "cCc"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:hopper"
+        },
+        "O": {
+            "tag": "minecraft:planks"
+        },
+        "n": {
+            "item": "minecraft:netherite_ingot"
+        },
+        "c": {
+            "item": "minecraft:copper_ingot"
+        },
+        "C": {
+            "item": "minecraft:crafter"
+        }
+    },
+    "result": {
+        "id": "adventurerscookbook:seed_maker",
+        "count": 1
+    }
+}

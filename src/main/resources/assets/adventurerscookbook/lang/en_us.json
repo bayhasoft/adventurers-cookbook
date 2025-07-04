@@ -16,6 +16,8 @@
     "item.adventurerscookbook.ancient_fruit": "Ancient Fruit",
     "item.adventurerscookbook.ancient_seed": "Ancient Seed",
 
+    "block.adventurerscookbook.seed_maker": "Seed Maker",
+
     "item.minecraft.potion.effect.vitality_potion": "Potion of Vitality",
     "item.minecraft.potion.effect.long_vitality_potion": "Potion of Vitality",
     "item.minecraft.potion.effect.strong_vitality_potion": "Potion of Vitality",
@@ -27,5 +29,14 @@
     "item.minecraft.lingering_potion.effect.strong_vitality_potion": "Lingering Potion of Vitality",
     "item.minecraft.tipped_arrow.effect.vitality_potion": "Arrow of Vitality",
     "item.minecraft.tipped_arrow.effect.long_vitality_potion": "Arrow of Vitality",
-    "item.minecraft.tipped_arrow.effect.strong_vitality_potion": "Arrow of Vitality"
+    "item.minecraft.tipped_arrow.effect.strong_vitality_potion": "Arrow of Vitality",
+
+    "seed_maker_display_name":"Seed Maker",
+
+    "tooltip.adventurerscookbook.press.shift": "Press Shift For Details",
+    "tooltip.adventurerscookbook.line1": "Used To Craft Seeds & Saplings",
+    "tooltip.adventurerscookbook.line2": "From Crops & Vegetables",
+
+    "tooltip.adventurerscookbook.ancient_seed": "Could These Still Grow?"
+
 }
