@@ -6,12 +6,8 @@
         "B "
     ],
     "key": {
-        "#": {
-            "item": "adventurerscookbook:rice"
-        },
-        "B": {
-            "item": "minecraft:bowl"
-        }
+        "#": "adventurerscookbook:rice",
+        "B": "minecraft:bowl"
     },
     "result": {
         "id": "adventurerscookbook:rice_bowl",

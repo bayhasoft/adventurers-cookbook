@@ -2,12 +2,8 @@
     "type": "minecraft:crafting_shapeless",
     "category": "misc",
     "ingredients": [
-        {
-            "item": "minecraft:golden_carrot"
-        },
-        {
-            "item": "adventurerscookbook:drinking_glass"
-        }
+        "minecraft:golden_carrot",
+        "adventurerscookbook:drinking_glass"
     ],
     "result": {
         "id": "adventurerscookbook:golden_carrot_juice",

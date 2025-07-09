@@ -3,9 +3,10 @@
 	"id": "adventurers-cookbook",
 	"version": "${version}",
 	"name": "Adventurer's CookBook",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Adds more food items to the game.",
 	"authors": [
-		"KG7PNH"
+		"KG7PNH",
+		"KJ7GDS"
 	],
 	"contact": {
 		"sources": "https://github.com/bayhasoft/adventurers-cookbook"
@@ -29,7 +30,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.14.18",
-		"minecraft": "~1.21.1",
+		"minecraft": "~1.21.7",
 		"java": ">=21",
 		"fabric-api": "*"
 	},

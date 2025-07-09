@@ -1,13 +1,13 @@
 package bayhasoft.adventurerscookbook.loottablemodifiers;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.util.Identifier;
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.item.ModItems;
 
@@ -16,7 +16,7 @@ public class LootTablesEntitiesModifiers {
         AdventurersCookBook.LOGGER.info(AdventurersCookBook.MOD_ID + "modifying even more loot tables");
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             
-            if(EntityType.FROG.getLootTableId().equals(key)) {
+            if(Identifier.of("minecraft", "entities/frog").equals(key.getValue())) {
                 LootPool.Builder PoolBuilderMango = LootPool.builder()
                     .rolls(ConstantLootNumberProvider.create(1))
                     .with(ItemEntry.builder(ModItems.FROG_LEGS))

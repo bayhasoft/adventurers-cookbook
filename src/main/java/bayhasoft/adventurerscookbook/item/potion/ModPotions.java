@@ -23,9 +23,9 @@ public class ModPotions {
     public static void registerPotions() {    
         AdventurersCookBook.LOGGER.info("Registering Mod Items for " + AdventurersCookBook.MOD_ID);
         
-        VITALITY_POTION = registerPotion("vitality_potion", new Potion(new StatusEffectInstance(HEALTH_BOOST, 20 * 180, 0)));
-        LONG_VITALITY_POTION = registerPotion("long_vitality_potion", new Potion(new StatusEffectInstance(HEALTH_BOOST, 20 * 480, 0)));
-        STRONG_VITALITY_POTION = registerPotion("strong_vitality_potion", new Potion(new StatusEffectInstance(HEALTH_BOOST, 20 * 180, 1)));
+        VITALITY_POTION = registerPotion("vitality_potion", new Potion("vitality_potion", new StatusEffectInstance(HEALTH_BOOST, 20 * 180, 0)));
+        LONG_VITALITY_POTION = registerPotion("long_vitality_potion", new Potion("vitality_potion", new StatusEffectInstance(HEALTH_BOOST, 20 * 480, 0)));
+        STRONG_VITALITY_POTION = registerPotion("strong_vitality_potion", new Potion("vitality_potion", new StatusEffectInstance(HEALTH_BOOST, 20 * 180, 1)));
         
         registerRecipes();
     }

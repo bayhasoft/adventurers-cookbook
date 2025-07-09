@@ -1,8 +1,6 @@
 {
   "type": "adventurerscookbook:seed_maker",
-  "ingredient": {
-    "item": "adventurerscookbook:rice"
-  },
+  "ingredient": "adventurerscookbook:rice",
   "result": {
     "id": "adventurerscookbook:rice_seeds"
   }

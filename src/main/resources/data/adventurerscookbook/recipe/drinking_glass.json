@@ -7,9 +7,7 @@
     ],
     "category": "misc",
     "key": {
-        "#": {
-            "item": "minecraft:glass"
-        }
+        "#":"minecraft:glass"
     },
     "result": {
         "id": "adventurerscookbook:drinking_glass",

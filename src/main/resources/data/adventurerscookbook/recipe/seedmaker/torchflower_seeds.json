@@ -1,8 +1,6 @@
 {
   "type": "adventurerscookbook:seed_maker",
-  "ingredient": {
-    "item": "minecraft:torchflower"
-  },
+  "ingredient": "minecraft:torchflower",
   "result": {
     "id": "minecraft:torchflower_seeds"
   }

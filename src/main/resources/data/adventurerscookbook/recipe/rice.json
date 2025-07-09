@@ -2,9 +2,7 @@
     "type": "minecraft:crafting_shapeless",
     "category": "misc",
     "ingredients": [
-        {
-            "item": "adventurerscookbook:rice_bag"
-        }
+        "adventurerscookbook:rice_bag"
     ],
     "result": {
         "id": "adventurerscookbook:rice",

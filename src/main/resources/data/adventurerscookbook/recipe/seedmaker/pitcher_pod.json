@@ -1,8 +1,6 @@
 {
   "type": "adventurerscookbook:seed_maker",
-  "ingredient": {
-    "item": "minecraft:pitcher_plant"
-  },
+  "ingredient": "minecraft:pitcher_plant",
   "result": {
     "id": "minecraft:pitcher_pod"
   }

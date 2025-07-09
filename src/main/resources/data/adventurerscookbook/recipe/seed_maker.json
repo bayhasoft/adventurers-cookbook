@@ -6,21 +6,11 @@
         "cCc"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:hopper"
-        },
-        "O": {
-            "tag": "minecraft:planks"
-        },
-        "n": {
-            "item": "minecraft:netherite_ingot"
-        },
-        "c": {
-            "item": "minecraft:copper_ingot"
-        },
-        "C": {
-            "item": "minecraft:crafter"
-        }
+        "#": "minecraft:hopper",
+        "O": "#minecraft:planks",
+        "n": "minecraft:netherite_ingot",
+        "c": "minecraft:copper_ingot",
+        "C": "minecraft:crafter"
     },
     "result": {
         "id": "adventurerscookbook:seed_maker",

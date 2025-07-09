@@ -1,8 +1,6 @@
 {
   "type": "adventurerscookbook:seed_maker",
-  "ingredient": {
-    "item": "minecraft:wheat"
-  },
+  "ingredient": "minecraft:wheat",
   "result": {
     "id": "minecraft:wheat_seeds"
   }

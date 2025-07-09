@@ -1,8 +1,6 @@
 {
   "type": "adventurerscookbook:seed_maker",
-  "ingredient": {
-    "item": "adventurerscookbook:ancient_fruit"
-  },
+  "ingredient":  "adventurerscookbook:ancient_fruit",
   "result": {
     "id": "adventurerscookbook:ancient_seed"
   }

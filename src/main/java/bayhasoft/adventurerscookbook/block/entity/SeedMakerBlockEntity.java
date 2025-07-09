@@ -24,6 +24,9 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -71,19 +74,19 @@ public class SeedMakerBlockEntity extends BlockEntity implements ImplementedInve
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt, inventory, registryLookup);
-        nbt.putInt("seed_maker.progress", progress);
-        nbt.putInt("seed_maker.maxprogress", maxProgress);
+    protected void writeData(WriteView view) {
+        super.writeData(view);
+        Inventories.writeData(view, inventory);
+        view.putInt("seed_maker.progress", progress);
+        view.putInt("seed_maker.maxprogress", maxProgress);
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.readNbt(nbt, registryLookup);
-        Inventories.readNbt(nbt, inventory, registryLookup);
-        progress = nbt.getInt("seed_maker.progress");
-        maxProgress = nbt.getInt("seed_maker.maxprogress");
+    protected void readData(ReadView view) {
+        Inventories.readData(view, inventory);
+        progress = view.getInt("seed_maker.progress", 0);
+        maxProgress = view.getInt("seed_maker.maxprogress", 0);
+        super.readData(view);
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
@@ -132,7 +135,8 @@ public class SeedMakerBlockEntity extends BlockEntity implements ImplementedInve
     }
 
     private Optional<RecipeEntry<SeedMakerRecipe>> getCurrentRecipe() {
-        return this.getWorld().getRecipeManager().getFirstMatch(ModRecipes.SEED_MAKER_TYPE, new SingleStackRecipeInput(inventory.get(INPUT_SLOT)), this.world);
+        return ((ServerWorld) this.getWorld()).getRecipeManager()
+        .getFirstMatch(ModRecipes.SEED_MAKER_TYPE, new SingleStackRecipeInput(inventory.get(INPUT_SLOT)), this.world);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

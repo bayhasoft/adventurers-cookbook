@@ -1,8 +1,6 @@
 {
     "type": "minecraft:smoking",
-    "ingredient": {
-        "item": "adventurerscookbook:frog_legs"
-    },
+    "ingredient": "adventurerscookbook:frog_legs",
     "result": {
         "id": "adventurerscookbook:frog_legs_cooked"
     },

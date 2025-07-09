@@ -1,7 +1,5 @@
 package bayhasoft.adventurerscookbook.block.custom;
 
-import java.util.List;
-
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.MapCodec;
@@ -16,20 +14,15 @@ import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.TooltipContext;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Property;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -38,25 +31,26 @@ import net.minecraft.world.World;
 
 public class SeedMakerBlock extends BlockWithEntity {
     public static final MapCodec<SeedMakerBlock> CODEC = SeedMakerBlock.createCodec(SeedMakerBlock::new);
-    public static final DirectionProperty FACING;
+    	public static final EnumProperty<Direction> FACING = HorizontalFacingBlock.FACING;
 
     public SeedMakerBlock(Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)));
     }
 
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType options) {
+    // TODO: Tooltip
+    // @Override
+    // public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
         
-        if(Screen.hasShiftDown()){
-        tooltip.add(Text.translatable("tooltip.adventurerscookbook.line1"));
-        tooltip.add(Text.translatable("tooltip.adventurerscookbook.line2"));
-        }else{
-        tooltip.add(Text.translatable("tooltip.adventurerscookbook.press.shift").formatted(Formatting.BOLD, Formatting.AQUA));
-        }
-        super.appendTooltip(stack, context, tooltip, options);
+    //     if(Screen.hasShiftDown()){
+    //     tooltip.add(Text.translatable("tooltip.adventurerscookbook.line1"));
+    //     tooltip.add(Text.translatable("tooltip.adventurerscookbook.line2"));
+    //     }else{
+    //     tooltip.add(Text.translatable("tooltip.adventurerscookbook.press.shift").formatted(Formatting.BOLD, Formatting.AQUA));
+    //     }
+    //     super.appendTooltip(stack, context, tooltip, options);
         
-    }
+    // }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return (BlockState)((BlockState)this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite()));
@@ -78,17 +72,10 @@ public class SeedMakerBlock extends BlockWithEntity {
         return BlockRenderType.MODEL;
     }
 
-    @Override
-    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if(blockEntity instanceof SeedMakerBlockEntity) {
-                ItemScatterer.spawn(world, pos, ((SeedMakerBlockEntity) blockEntity));
-                world.updateComparators(pos, this);
-            }
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
-    }
+	@Override
+	protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved) {
+		ItemScatterer.onStateReplaced(state, world, pos);
+	}
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
@@ -98,7 +85,7 @@ public class SeedMakerBlock extends BlockWithEntity {
             }
         }
         
-        return ActionResult.success(world.isClient);
+        return ActionResult.SUCCESS;
     }
 
     @Nullable
@@ -124,7 +111,7 @@ public class SeedMakerBlock extends BlockWithEntity {
         builder.add(new Property[]{FACING});
     }
 
-    static {
-    FACING = HorizontalFacingBlock.FACING;
-   }
+//     static {
+//     FACING = HorizontalFacingBlock.FACING;
+//    }
 }

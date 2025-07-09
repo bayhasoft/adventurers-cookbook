@@ -1,14 +1,18 @@
 package bayhasoft.adventurerscookbook.item;
 
-import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.block.ModBlocks;
+import bayhasoft.adventurerscookbook.item.components.ModConsumableComponents;
+import bayhasoft.adventurerscookbook.item.components.ModFoodComponents;
 import bayhasoft.adventurerscookbook.item.custom.FoodBowlItem;
 import bayhasoft.adventurerscookbook.item.custom.JuiceItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.type.FoodComponents;
-import net.minecraft.item.AliasedBlockItem;
+import net.minecraft.component.type.TooltipDisplayComponent;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -17,70 +21,67 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 public class ModItems {
 
-    public static final Item DRINKING_GLASS = registerItem("drinking_glass",
-        new Item(new Item.Settings()));
+    public static final Item DRINKING_GLASS = registerItem("drinking_glass", Item::new);
 
-    public static final Item CARROT_JUICE = registerItem( "carrot_juice",
-        new JuiceItem(new Item.Settings().food(ModFoodComponents.CARROT_JUICE)));
+    public static final Item CARROT_JUICE = registerItem( "carrot_juice", 
+        setting -> new JuiceItem(setting.food(ModFoodComponents.CARROT_JUICE, ModConsumableComponents.JUICE)));
 
-    public static final Item FROG_LEGS = registerItem("frog_legs",
-        new Item(new Item.Settings().food(FoodComponents.BEEF)));
+    public static final Item FROG_LEGS = registerItem("frog_legs", 
+        setting -> new Item(setting.food(FoodComponents.BEEF)));
 
-    public static final Item FROG_LEGS_COOKED = registerItem("frog_legs_cooked",
-        new Item(new Item.Settings().food(FoodComponents.COOKED_COD)));
+    public static final Item FROG_LEGS_COOKED = registerItem("frog_legs_cooked", 
+        setting -> new Item(setting.food(FoodComponents.COOKED_COD)));
 
-    public static final Item GOLDEN_CARROT_JUICE = registerItem( "golden_carrot_juice",
-        new JuiceItem(new Item.Settings()
-            .food(ModFoodComponents.GOLDEN_CARROT_JUICE)));
+    public static final Item GOLDEN_CARROT_JUICE = registerItem( "golden_carrot_juice", 
+        setting -> new JuiceItem(setting.food(ModFoodComponents.GOLDEN_CARROT_JUICE, ModConsumableComponents.JUICE)));
 
-    public static final Item GREEN_TOMATO = registerItem( "green_tomato",
-        new Item(new Item.Settings()
-            .food(ModFoodComponents.GREEN_TOMATO)));
+    public static final Item GREEN_TOMATO = registerItem( "green_tomato", 
+        setting -> new Item(setting.food(ModFoodComponents.GREEN_TOMATO, ModConsumableComponents.GREEN_TOMATO)));
 
-    public static final Item MANGO = registerItem( "mango",
-        new Item(new Item.Settings()
-            .food(FoodComponents.APPLE)));
+    public static final Item MANGO = registerItem( "mango", 
+        setting -> new Item(setting.food(FoodComponents.APPLE)));
 
-    public static final Item RICE = registerItem( "rice",
-        new Item(new Item.Settings()));
+    public static final Item RICE = registerItem( "rice", Item::new);
 
-    public static final Item RICE_BAG = registerItem( "rice_bag",
-        new Item(new Item.Settings()));
+    public static final Item RICE_BAG = registerItem( "rice_bag", Item::new);
 
     public static final Item RICE_SEEDS = registerItem("rice_seeds",
-        new AliasedBlockItem(ModBlocks.RICE_CROP, new Item.Settings()));
+       setting -> new BlockItem(ModBlocks.RICE_CROP, setting));
 
-    public static final Item RICE_BOWL = registerItem( "rice_bowl",
-        new FoodBowlItem(new Item.Settings().food(FoodComponents.BREAD)));
+    public static final Item RICE_BOWL = registerItem( "rice_bowl", 
+        setting -> new FoodBowlItem(setting.food(FoodComponents.BREAD)));
 
-    public static final Item SUSHI = registerItem( "sushi",
-        new Item(new Item.Settings().food(FoodComponents.COOKED_BEEF)));
+    public static final Item SUSHI = registerItem( "sushi", 
+        setting -> new Item(setting.food(FoodComponents.COOKED_BEEF)));
 
-    public static final Item TOMATO = registerItem( "tomato",
-        new Item(new Item.Settings().food(FoodComponents.APPLE)));
+    public static final Item TOMATO = registerItem( "tomato", 
+        setting -> new Item(setting.food(FoodComponents.APPLE)));
 
     public static final Item TOMATO_SEEDS = registerItem("tomato_seeds",
-        new AliasedBlockItem(ModBlocks.TOMATO_CROP, new Item.Settings()));
+        setting -> new BlockItem(ModBlocks.TOMATO_CROP, setting));
 
     public static final Item ANCIENT_FRUIT = registerItem("ancient_fruit", 
-        new Item(new Item.Settings().food(ModFoodComponents.ANCIENT_FRUIT).rarity(Rarity.RARE)));
+        setting -> new Item(setting.food(ModFoodComponents.ANCIENT_FRUIT, ModConsumableComponents.ANCIENT_FRUIT).rarity(Rarity.RARE)));
 
-    public static final Item ANCIENT_SEED = registerItem("ancient_seed", new AliasedBlockItem(ModBlocks.ANCIENT_FRUIT_CROP, new Item.Settings()){
+    public static final Item ANCIENT_SEED = registerItem("ancient_seed", 
+        setting -> new BlockItem(ModBlocks.ANCIENT_FRUIT_CROP, setting){
+        @SuppressWarnings("deprecation")
         @Override
-        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable("tooltip.adventurerscookbook.ancient_seed"));
-                   super.appendTooltip(stack, context, tooltip, type);
+        public void appendTooltip(ItemStack stack, Item.TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
+        textConsumer.accept(Text.translatable("tooltip.adventurerscookbook.ancient_seed"));
+                    super.appendTooltip(stack, context, displayComponent, textConsumer, type);
         }
     });
-
-    private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(AdventurersCookBook.MOD_ID, name), item);
+    private static Item registerItem(String name, Function<Item.Settings, Item> function) {
+        return Registry.register(Registries.ITEM, Identifier.of(AdventurersCookBook.MOD_ID, name),
+                function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(AdventurersCookBook.MOD_ID, name)))));
     }
 
     public static void addItemsToItemGroup() {

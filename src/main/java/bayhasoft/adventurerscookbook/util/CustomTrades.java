@@ -5,6 +5,7 @@ import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.item.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
 import net.minecraft.village.VillagerProfession;
@@ -50,13 +51,13 @@ public class CustomTrades {
                     new ItemStack(ModItems.SUSHI, 5),
                     16, 5, 0.05f));
             });
-        TradeOfferHelper.registerWanderingTraderOffers(1,
+        TradeOfferHelper.registerWanderingTraderOffers(
             factories -> {
-                factories.add((entity, random) -> new TradeOffer(
+                factories.addAll(Identifier.of(AdventurersCookBook.MOD_ID, "emerald_for_tomato_seeds"), (entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 1),
                     new ItemStack(ModItems.TOMATO_SEEDS, 1),
                     5, 1, 0.075f));
-                factories.add((entity, random) -> new TradeOffer(
+                factories.addAll(Identifier.of(AdventurersCookBook.MOD_ID, "emerald_for_rice_seeds"), (entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 1),
                     new ItemStack(ModItems.RICE_SEEDS, 1),
                     5, 1, 0.075f));

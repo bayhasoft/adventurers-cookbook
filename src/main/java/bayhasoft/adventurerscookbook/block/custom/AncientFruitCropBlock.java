@@ -52,7 +52,7 @@ public class AncientFruitCropBlock extends CropBlock{
             BlockState blockState = (BlockState)state.with(AGE, 3);
             world.setBlockState(pos, blockState, 2);
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, Emitter.of(player, blockState));
-            return ActionResult.success(world.isClient);
+            return ActionResult.SUCCESS;
         } else {
             return super.onUse(state, world, pos, player, hit);
         }

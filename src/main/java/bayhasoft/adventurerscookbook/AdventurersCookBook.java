@@ -36,7 +36,6 @@ public class AdventurersCookBook implements ModInitializer {
 		ModRegisteries.registerModThings();
 		ModPotions.registerPotions();
 		ModScreenHandlerType.registerModScreenHandlers();
-		ModScreenHandlerType.DoAThing();		// Bind Screens to Handlers
 		ModRecipes.registerRecipes();
 	}
 

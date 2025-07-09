@@ -2,7 +2,6 @@ package bayhasoft.adventurerscookbook.screen;
 
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
-import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
@@ -17,9 +16,5 @@ public class ModScreenHandlerType {
     
     public static void registerModScreenHandlers() {
         AdventurersCookBook.LOGGER.info("Registering ScreenHandlers for " + AdventurersCookBook.MOD_ID);
-    }
-
-    public static void DoAThing() {
-        HandledScreens.register(ModScreenHandlerType.SEED_MAKER, SeedMakerScreen::new); 
     }
 }
