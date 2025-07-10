@@ -2,11 +2,11 @@
 
 ## TODO
 
-### Tomatoes
+### Improved textures
 
-allow generating of seeds from tomatoes
+### Fruit trees
 
-ensure that all the things are compostable (as appropriate)
-add plants to farmer trade options
+### Add food sources to other mobs that have no, or few loot drops
 
-no-op change
+### More juice
+
