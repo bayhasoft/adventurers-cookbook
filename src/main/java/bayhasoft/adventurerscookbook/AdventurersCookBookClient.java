@@ -23,6 +23,6 @@ public class AdventurersCookBookClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.ANCIENT_FRUIT_CROP, BlockRenderLayer.CUTOUT);
 
         // Bind Screens to Handlers
-        HandledScreens.register(ModScreenHandlerType.SEED_MAKER, SeedMakerScreen::new); 
+        HandledScreens.register(ModScreenHandlerType.SEED_MAKER, SeedMakerScreen::new);
     }
 }

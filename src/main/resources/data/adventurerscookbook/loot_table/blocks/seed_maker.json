@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+  {
+    "entries": [
+      {
+        "type": "minecraft:item",
+        "name": "adventurerscookbook:seed_maker"
+      }
+    ],
+    "rolls": 1
+  }
+  ],
+  "random_sequence": "minecraft:adventurerscookbook/seed_maker"
+}

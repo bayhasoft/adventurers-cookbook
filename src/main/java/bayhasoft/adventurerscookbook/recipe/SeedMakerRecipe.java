@@ -55,7 +55,7 @@ public record SeedMakerRecipe(Ingredient inputItem, ItemStack output) implements
 
     @Override
     public boolean matches(SingleStackRecipeInput input, World world) {
-        if (world.isClient) {
+        if (world.isClient()) {
          return false;   
         }
         return inputItem.test(input.getStackInSlot(0));

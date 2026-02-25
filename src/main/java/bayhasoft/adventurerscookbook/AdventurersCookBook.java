@@ -26,15 +26,15 @@ public class AdventurersCookBook implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		ModItems.registerModItems();
+	    ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerBlockEntities();
-		CustomTrades.registerCustomTrades();
+	    CustomTrades.registerCustomTrades();
 		LootTablesBlockModifiers.modifyLootTables();
 		LootTablesChestModifiers.modifyLootTables();
 		LootTablesEntitiesModifiers.modifyLootTables();
 		ModRegisteries.registerModThings();
-		ModPotions.registerPotions();
+	    ModPotions.registerPotions();
 		ModScreenHandlerType.registerModScreenHandlers();
 		ModRecipes.registerRecipes();
 	}

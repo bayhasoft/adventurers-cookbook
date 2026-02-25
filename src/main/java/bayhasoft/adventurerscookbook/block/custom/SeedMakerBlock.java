@@ -79,7 +79,7 @@ public class SeedMakerBlock extends BlockWithEntity {
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient) {
+        if (!world.isClient()) {
              if(world.getBlockEntity(pos) instanceof SeedMakerBlockEntity seedmaker) {
                 player.openHandledScreen(seedmaker);
             }
