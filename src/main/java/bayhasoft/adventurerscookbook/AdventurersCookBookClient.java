@@ -21,6 +21,7 @@ public class AdventurersCookBookClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.TOMATO_CROP, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.BERRY_TEST_BUSH, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.ANCIENT_FRUIT_CROP, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.CORN_CROP, BlockRenderLayer.CUTOUT);
 
         // Bind Screens to Handlers
         HandledScreens.register(ModScreenHandlerType.SEED_MAKER, SeedMakerScreen::new);

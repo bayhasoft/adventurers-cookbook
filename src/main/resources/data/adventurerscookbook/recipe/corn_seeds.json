@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+        "adventurerscookbook:corn"
+    ],
+    "result": {
+        "id": "adventurerscookbook:corn_seeds",
+        "count": 1
+    },
+    "group": "rice"
+}

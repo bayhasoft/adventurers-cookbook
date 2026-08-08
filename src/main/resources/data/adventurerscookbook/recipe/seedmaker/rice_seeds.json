@@ -2,6 +2,7 @@
   "type": "adventurerscookbook:seed_maker",
   "ingredient": "adventurerscookbook:rice",
   "result": {
-    "id": "adventurerscookbook:rice_seeds"
+    "id": "adventurerscookbook:rice_seeds",
+      "count": 2
   }
 }

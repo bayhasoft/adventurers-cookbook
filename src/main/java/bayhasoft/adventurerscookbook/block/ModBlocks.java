@@ -3,11 +3,7 @@ package bayhasoft.adventurerscookbook.block;
 import java.util.function.Function;
 
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
-import bayhasoft.adventurerscookbook.block.custom.AncientFruitCropBlock;
-import bayhasoft.adventurerscookbook.block.custom.BerryTestBlock;
-import bayhasoft.adventurerscookbook.block.custom.RiceCropBlock;
-import bayhasoft.adventurerscookbook.block.custom.SeedMakerBlock;
-import bayhasoft.adventurerscookbook.block.custom.TomatoCropBlock;
+import bayhasoft.adventurerscookbook.block.custom.*;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -34,6 +30,9 @@ public class ModBlocks {
 
     public static final Block BERRY_TEST_BUSH = registerBlock("berry_test_bush",
         BerryTestBlock::new, AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH), false);
+
+    public static final Block CORN_CROP = registerBlock("corn_crop", CornCropBlock::new,
+            AbstractBlock.Settings.copy(Blocks.PITCHER_CROP),false);
 
     public static final Block ANCIENT_FRUIT_CROP = registerBlock("ancient_fruit_crop", AncientFruitCropBlock::new, 
         AbstractBlock.Settings.create()

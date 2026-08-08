@@ -2,6 +2,7 @@
   "type": "adventurerscookbook:seed_maker",
   "ingredient": "adventurerscookbook:tomato",
   "result": {
-    "id": "adventurerscookbook:tomato_seeds"
+    "id": "adventurerscookbook:tomato_seeds",
+      "count": 2
   }
 }

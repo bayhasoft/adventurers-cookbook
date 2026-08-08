@@ -2,6 +2,7 @@
   "type": "adventurerscookbook:seed_maker",
   "ingredient": "minecraft:beetroot",
   "result": {
-    "id": "minecraft:beetroot_seeds"
+    "id": "minecraft:beetroot_seeds",
+      "count": 2
   }
 }

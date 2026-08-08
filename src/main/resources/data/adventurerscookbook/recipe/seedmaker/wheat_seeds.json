@@ -2,6 +2,7 @@
   "type": "adventurerscookbook:seed_maker",
   "ingredient": "minecraft:wheat",
   "result": {
-    "id": "minecraft:wheat_seeds"
+    "id": "minecraft:wheat_seeds",
+      "count": 4
   }
 }

@@ -1,0 +1,8 @@
+{
+  "type": "adventurerscookbook:seed_maker",
+  "ingredient":  "adventurerscookbook:corn",
+  "result": {
+    "id": "adventurerscookbook:corn_seeds",
+      "count": 5
+  }
+}

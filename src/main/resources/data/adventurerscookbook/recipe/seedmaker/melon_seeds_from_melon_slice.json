@@ -2,6 +2,8 @@
   "type": "adventurerscookbook:seed_maker",
   "ingredient": "minecraft:melon_slice",
   "result": {
-    "id": "minecraft:melon_seeds"
+    "id": "minecraft:melon_seeds",
+    "count": 2
+
   }
 }
