@@ -44,8 +44,8 @@ public class ModItems {
     public static final Item MELLON_JUICE = registerItem( "mellon_juice",
             setting -> new JuiceItem(setting.food(Foods.MELON_SLICE, ModConsumableComponents.JUICE)));
 
-    public static final Item FRIED_EGG = registerItem("fried_egg",
-            setting -> new Item(setting.food(Foods.BAKED_POTATO)));
+//    public static final Item FRIED_EGG = registerItem("fried_egg",
+//            setting -> new Item(setting.food(Foods.BAKED_POTATO)));
 
     public static final Item FROG_LEGS = registerItem("frog_legs",
         setting -> new Item(setting.food(Foods.BEEF)));
@@ -110,7 +110,7 @@ public class ModItems {
         addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, GOLDEN_CARROT_JUICE);
 //        addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, APPLE_JUICE);
 //        addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, MELLON_JUICE);
-        addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, FRIED_EGG);
+//        addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, FRIED_EGG);
         addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, FROG_LEGS);
         addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, FROG_LEGS_COOKED);
         addToItemGroup(CreativeModeTabs.FOOD_AND_DRINKS, GREEN_TOMATO);

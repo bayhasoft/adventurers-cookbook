@@ -8,6 +8,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
@@ -25,11 +26,11 @@ public class MudBallEntity extends ThrowableItemProjectile {
     }
 
     public MudBallEntity(Level world, LivingEntity owner, ItemStack stack) {
-        super(EntityType.SNOWBALL, owner, world, stack);
+        super(EntityTypes.SNOWBALL, owner, world, stack);
     }
 
     public MudBallEntity(Level world, double x, double y, double z, ItemStack stack) {
-        super(EntityType.SNOWBALL, x, y, z, world, stack);
+        super(EntityTypes.SNOWBALL, x, y, z, world, stack);
     }
 
     protected Item getDefaultItem() {
