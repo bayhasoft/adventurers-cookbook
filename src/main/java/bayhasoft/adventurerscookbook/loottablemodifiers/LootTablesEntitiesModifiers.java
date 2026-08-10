@@ -1,27 +1,27 @@
 package bayhasoft.adventurerscookbook.loottablemodifiers;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
 import bayhasoft.adventurerscookbook.item.ModItems;
 
 public class LootTablesEntitiesModifiers {
     public static void modifyLootTables() {
-        AdventurersCookBook.LOGGER.info(AdventurersCookBook.MOD_ID + "modifying even more loot tables");
+        AdventurersCookBook.LOGGER.info(AdventurersCookBook.MOD_ID + " modifying even more loot tables");
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             
-            if(Identifier.of("minecraft", "entities/frog").equals(key.getValue())) {
-                LootPool.Builder PoolBuilderMango = LootPool.builder()
-                    .rolls(ConstantLootNumberProvider.create(1))
-                    .with(ItemEntry.builder(ModItems.FROG_LEGS))
-                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 1.0f)).build())
-                    .apply(EnchantedCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0f, 1.0f)));
+            if(Identifier.fromNamespaceAndPath("minecraft", "entities/frog").equals(key.identifier())) {
+                LootPool.Builder PoolBuilderMango = LootPool.lootPool()
+                    .setRolls(ConstantValue.exactly(1))
+                    .add(LootItem.lootTableItem(ModItems.FROG_LEGS))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0f, 1.0f)).build())
+                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0f, 1.0f)));
                 tableBuilder.pool(PoolBuilderMango.build());
             }
         });

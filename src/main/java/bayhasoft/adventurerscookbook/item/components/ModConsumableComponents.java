@@ -1,17 +1,17 @@
 package bayhasoft.adventurerscookbook.item.components;
 
-import net.minecraft.component.type.ConsumableComponent;
-import net.minecraft.component.type.ConsumableComponents;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 
-public class ModConsumableComponents extends ConsumableComponents{
-    public static final ConsumableComponent JUICE = drink().consumeSeconds(0.8F).build();
-    public static final ConsumableComponent ANCIENT_FRUIT = food()
-    .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0), 1.0F))
+public class ModConsumableComponents extends Consumables{
+    public static final Consumable JUICE = defaultDrink().consumeSeconds(0.8F).build();
+    public static final Consumable ANCIENT_FRUIT = defaultFood()
+    .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.INSTANT_HEALTH, 1, 0), 1.0F))
     .build();
-    public static final ConsumableComponent GREEN_TOMATO = food()
-    .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.6F))
+    public static final Consumable GREEN_TOMATO = defaultFood()
+    .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.6F))
     .build();
 }

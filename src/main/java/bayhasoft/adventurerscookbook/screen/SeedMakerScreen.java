@@ -1,42 +1,43 @@
 package bayhasoft.adventurerscookbook.screen;
 
 import bayhasoft.adventurerscookbook.AdventurersCookBook;
-import net.minecraft.client.gl.RenderPipelines;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.player.Inventory;
 
-public class SeedMakerScreen extends HandledScreen<SeedMakerScreemHandler>{
+public class SeedMakerScreen extends AbstractContainerScreen<SeedMakerScreemHandler>{
     private static final Identifier GUI_TEXTURE = AdventurersCookBook.id("textures/gui/seed_maker_gui.png");
     private static final Identifier PROGRESS_ARROW = AdventurersCookBook.id("textures/gui/progress_arrow.png");
 
-    public SeedMakerScreen(SeedMakerScreemHandler handler, PlayerInventory inventory, Text title) {
+    public SeedMakerScreen(SeedMakerScreemHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title);
     }
 
     @Override
-    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
+    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        super.extractBackground(graphics, mouseX, mouseY, delta);
 
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
 
-        context.drawTexture(RenderPipelines.GUI_TEXTURED, GUI_TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight, 256, 256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
 
-        renderProgressArrow(context, x, y);
+        renderProgressArrow(graphics, x, y);
     }
 
-    private void renderProgressArrow(DrawContext context, int x, int y) {
-        if(handler.isCrafting()) {
-            context.drawTexture(RenderPipelines.GUI_TEXTURED, PROGRESS_ARROW, x + 85, y + 30, 0, 0,
-                    8, handler.getScaledArrowProgress(), 8, 26);
+    private void renderProgressArrow(GuiGraphicsExtractor graphics, int x, int y) {
+        if(menu.isCrafting()) {
+            graphics.blit(RenderPipelines.GUI_TEXTURED, PROGRESS_ARROW, x + 85, y + 30, 0, 0,
+                    8, menu.getScaledArrowProgress(), 8, 26);
         }
     }
 
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-        drawMouseoverTooltip(context, mouseX, mouseY);
-    }
+//    @Override
+//    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+//        super.render(graphics, mouseX, mouseY, delta);
+//        renderTooltip(graphics, mouseX, mouseY);
+//    }
 }

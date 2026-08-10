@@ -2,48 +2,48 @@ package bayhasoft.adventurerscookbook.block.entity;
 
 import java.util.Optional;
 
+import net.fabricmc.fabric.api.menu.v1.ExtendedMenuProvider;
 import org.jetbrains.annotations.Nullable;
 
 import bayhasoft.adventurerscookbook.recipe.ModRecipes;
 import bayhasoft.adventurerscookbook.recipe.SeedMakerRecipe;
 import bayhasoft.adventurerscookbook.screen.SeedMakerScreemHandler;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.input.SingleStackRecipeInput;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
-import net.minecraft.text.Text;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
-public class SeedMakerBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos>{
-    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);    
+public class SeedMakerBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedMenuProvider<BlockPos> {
+    private NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);    
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
     
-    protected final PropertyDelegate propertyDelegate;
+    protected final ContainerData propertyDelegate;
     private int progress = 0;
     private int maxProgress = 3000;
 
     public SeedMakerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SEED_MAKER_BLOCK_ENTITY, pos, state);
-        this.propertyDelegate = new PropertyDelegate() {
+        this.propertyDelegate = new ContainerData() {
             @Override
             public int get(int index){
                 return switch (index){
@@ -62,37 +62,37 @@ public class SeedMakerBlockEntity extends BlockEntity implements ImplementedInve
                 }
 
             @Override
-            public int size() {
+            public int getCount() {
                 return 2;
             }
         };
     }
 
     @Override
-    public DefaultedList<ItemStack> getItems() {
+    public NonNullList<ItemStack> getItems() {
         return inventory;
     }
 
     @Override
-    protected void writeData(WriteView view) {
-        super.writeData(view);
-        Inventories.writeData(view, inventory);
+    protected void saveAdditional(ValueOutput view) {
+        super.saveAdditional(view);
+        ContainerHelper.saveAllItems(view, inventory);
         view.putInt("seed_maker.progress", progress);
         view.putInt("seed_maker.maxprogress", maxProgress);
     }
 
     @Override
-    protected void readData(ReadView view) {
-        Inventories.readData(view, inventory);
-        progress = view.getInt("seed_maker.progress", 0);
-        maxProgress = view.getInt("seed_maker.maxprogress", 0);
-        super.readData(view);
+    protected void loadAdditional(ValueInput view) {
+        ContainerHelper.loadAllItems(view, inventory);
+        progress = view.getIntOr("seed_maker.progress", 0);
+        maxProgress = view.getIntOr("seed_maker.maxprogress", 0);
+        super.loadAdditional(view);
     }
 
-    public void tick(World world, BlockPos pos, BlockState state) {
+    public void tick(Level world, BlockPos pos, BlockState state) {
         if(hasRecipe()) {
             increaseCraftingProgress();
-            markDirty(world, pos, state);
+            setChanged(world, pos, state);
 
             if(hasCraftingFinished()) {
                 craftItem();
@@ -104,12 +104,12 @@ public class SeedMakerBlockEntity extends BlockEntity implements ImplementedInve
     }
 
     private void craftItem() {
-        Optional<RecipeEntry<SeedMakerRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<SeedMakerRecipe>> recipe = getCurrentRecipe();
 
-        ItemStack output = recipe.get().value().output();
-        this.removeStack(INPUT_SLOT, 1);
-        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
-                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+        ItemStack output = recipe.get().value().output().create();
+        this.removeItem(INPUT_SLOT, 1);
+        this.setItem(OUTPUT_SLOT, new ItemStack(output.getItem(),
+                this.getItem(OUTPUT_SLOT).getCount() + output.getCount()));
     }
 
     private void resetProgress() {
@@ -126,54 +126,54 @@ public class SeedMakerBlockEntity extends BlockEntity implements ImplementedInve
     }
 
     private boolean hasRecipe() {
-        Optional<RecipeEntry<SeedMakerRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeHolder<SeedMakerRecipe>> recipe = getCurrentRecipe();
         if(recipe.isEmpty()) {
            return false;
         }
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().output().create();
         return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
     }
 
-    private Optional<RecipeEntry<SeedMakerRecipe>> getCurrentRecipe() {
-        return ((ServerWorld) this.getWorld()).getRecipeManager()
-        .getFirstMatch(ModRecipes.SEED_MAKER_TYPE, new SingleStackRecipeInput(inventory.get(INPUT_SLOT)), this.world);
+    private Optional<RecipeHolder<SeedMakerRecipe>> getCurrentRecipe() {
+        return ((ServerLevel) this.getLevel()).recipeAccess()
+        .getRecipeFor(ModRecipes.SEED_MAKER_TYPE, new SingleRecipeInput(inventory.get(INPUT_SLOT)), this.level);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
-        return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getItem() == output.getItem();
+        return this.getItem(OUTPUT_SLOT).isEmpty() || this.getItem(OUTPUT_SLOT).getItem() == output.getItem();
     }
 
     private boolean canInsertAmountIntoOutputSlot(int count) {
-        int maxCount = this.getStack(OUTPUT_SLOT).isEmpty() ? 64 : this.getStack(OUTPUT_SLOT).getMaxCount();
-        int currentCount = this.getStack(OUTPUT_SLOT).getCount();
+        int maxCount = this.getItem(OUTPUT_SLOT).isEmpty() ? 64 : this.getItem(OUTPUT_SLOT).getMaxStackSize();
+        int currentCount = this.getItem(OUTPUT_SLOT).getCount();
 
         return maxCount >= currentCount + count;
     }
 
     @Nullable
     @Override
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
-        return BlockEntityUpdateS2CPacket.create(this);
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        return createNbt(registryLookup);
+    public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
+        return saveWithoutMetadata(registryLookup);
     }
 
     @Override
-    public Text getDisplayName() {
-        return Text.translatable("seed_maker_display_name");
+    public Component getDisplayName() {
+        return Component.translatable("seed_maker_display_name");
     }
 
     @Nullable
     @Override
-    public ScreenHandler createMenu(int syncid, PlayerInventory playerInventory, PlayerEntity player) {
+    public AbstractContainerMenu createMenu(int syncid, Inventory playerInventory, Player player) {
         return new SeedMakerScreemHandler(syncid, playerInventory, this, this.propertyDelegate);
     }
 
     @Override
-    public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
-        return this.pos;
+    public BlockPos getScreenOpeningData(ServerPlayer player) {
+        return this.worldPosition;
     }
 }

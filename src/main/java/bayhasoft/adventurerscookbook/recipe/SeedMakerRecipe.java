@@ -2,96 +2,81 @@ package bayhasoft.adventurerscookbook.recipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.PlacementInfo;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeBookCategories;
+import net.minecraft.world.item.crafting.RecipeBookCategory;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.level.Level;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.IngredientPlacement;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.book.RecipeBookCategories;
-import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.recipe.input.SingleStackRecipeInput;
-import net.minecraft.registry.RegistryWrapper.WrapperLookup;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
+public record SeedMakerRecipe(Ingredient inputItem, ItemStackTemplate output) implements Recipe<SingleRecipeInput> {
+    public static final MapCodec<SeedMakerRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(
+                    Ingredient.CODEC.fieldOf("ingredient").forGetter(SeedMakerRecipe::inputItem),
+                    ItemStackTemplate.CODEC.fieldOf("result").forGetter(SeedMakerRecipe::output)
+            ).apply(instance, SeedMakerRecipe::new));
 
-public record SeedMakerRecipe(Ingredient inputItem, ItemStack output) implements Recipe<SingleStackRecipeInput>{
-    public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> list = DefaultedList.of();
+    public static final StreamCodec<RegistryFriendlyByteBuf, SeedMakerRecipe> STREAM_CODEC =
+            StreamCodec.composite(
+                    Ingredient.CONTENTS_STREAM_CODEC, SeedMakerRecipe::inputItem,
+                    ItemStackTemplate.STREAM_CODEC, SeedMakerRecipe::output,
+                    SeedMakerRecipe::new);
+
+    @Override
+    public boolean matches(SingleRecipeInput input, Level world) {
+        if (world.isClientSide()) {
+            return false;
+        }
+        return inputItem.test(input.getItem(0));
+    }
+
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> list = NonNullList.create();
         list.add(this.inputItem);
         return list;
     }
 
-    
-    // read Recipe JSON files --> new Recipe
-
     @Override
-    public ItemStack craft(SingleStackRecipeInput input, WrapperLookup lookup) {
-        return output.copy();
+    public ItemStack assemble(SingleRecipeInput input) {
+        return output.create().copy();
     }
 
-    // @Override
-    // public boolean fits(int width, int height) {
-    //     return true;
-    // }
-
-    // @Override
-    // public ItemStack getResult(WrapperLookup registriesLookup) {
-    //     return output;
-    // }
+    @Override
+    public boolean showNotification() {
+        return true;
+    }
 
     @Override
-    public RecipeSerializer<? extends Recipe<SingleStackRecipeInput>> getSerializer() {
+    public String group() {
+        return "Seed Making";
+    }
+
+    @Override
+    public RecipeSerializer<? extends Recipe<SingleRecipeInput>> getSerializer() {
         return ModRecipes.SEED_MAKER_SERIALIZER;
     }
 
     @Override
-    public RecipeType<? extends Recipe<SingleStackRecipeInput>> getType() {
+    public RecipeType<? extends Recipe<SingleRecipeInput>> getType() {
         return ModRecipes.SEED_MAKER_TYPE;
     }
 
     @Override
-    public boolean matches(SingleStackRecipeInput input, World world) {
-        if (world.isClient()) {
-         return false;   
-        }
-        return inputItem.test(input.getStackInSlot(0));
-    }
-    
-    public static class Serializer implements RecipeSerializer<SeedMakerRecipe> {
-        public static final MapCodec<SeedMakerRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-                Ingredient.CODEC.fieldOf("ingredient").forGetter(SeedMakerRecipe::inputItem),
-                ItemStack.CODEC.fieldOf("result").forGetter(SeedMakerRecipe::output)
-        ).apply(inst, SeedMakerRecipe::new));
-
-        public static final PacketCodec<RegistryByteBuf, SeedMakerRecipe> STREAM_CODEC =
-                PacketCodec.tuple(
-                        Ingredient.PACKET_CODEC, SeedMakerRecipe::inputItem,
-                        ItemStack.PACKET_CODEC, SeedMakerRecipe::output,
-                        SeedMakerRecipe::new);
-
-        @Override
-        public MapCodec<SeedMakerRecipe> codec() {
-            return CODEC;
-        }
-
-        @Override
-        public PacketCodec<RegistryByteBuf, SeedMakerRecipe> packetCodec() {
-            return STREAM_CODEC;
-        }
+    public PlacementInfo placementInfo() {
+        return PlacementInfo.create(inputItem);
     }
 
     @Override
-    public IngredientPlacement getIngredientPlacement() {
-         return IngredientPlacement.forSingleSlot(inputItem);
-    }
-
-
-    @Override
-    public RecipeBookCategory getRecipeBookCategory() {
-         return RecipeBookCategories.CRAFTING_MISC;
+    public RecipeBookCategory recipeBookCategory() {
+        return RecipeBookCategories.CRAFTING_MISC;
     }
 }

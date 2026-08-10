@@ -1,0 +1,13 @@
+{
+  "gives": {
+    "count": 2.0,
+    "id": "minecraft:emerald"
+  },
+  "max_uses": 16.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 1.0,
+    "id": "adventurerscookbook:ancient_fruit"
+  },
+  "xp": 30.0
+}
